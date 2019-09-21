@@ -1,9 +1,7 @@
 package cn.IBeauty.po;
 
-import java.io.Serializable;
 
-public class Cart implements Serializable{
-	private static final long serialVersionUID = 4654902648447027740L;
+public class Cart{
 	private int productId;
 	private int userId;
 	private String productImg;
@@ -60,9 +58,4 @@ public class Cart implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	
 }

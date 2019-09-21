@@ -11,6 +11,6 @@ import java.util.List;
 public interface AdminDAO {
 	
 	
-	public Admin getAdminByName(String admname);
+	public Admin getAdminByName(@Param("admname")String admname);
 	
 }

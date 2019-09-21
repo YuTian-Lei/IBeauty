@@ -11,7 +11,7 @@ import cn.IBeauty.dao.ProductDAO;
 import cn.IBeauty.po.Product;
 
 
-@Service("ProductService")
+@Service
 public class ProductService {
 	
 	@Autowired

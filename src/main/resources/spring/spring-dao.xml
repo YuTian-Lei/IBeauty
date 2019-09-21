@@ -10,7 +10,7 @@
 	<!-- 1.配置数据库相关参数properties的属性-->
     <context:property-placeholder location="classpath:jdbc.properties" ignore-unresolvable="true"/>
     <!-- <context:property-placeholder location="classpath:redis.properties" ignore-unresolvable="true"/>-->
-        
+ 
     <!-- 2.配置datasource,阿里 druid 数据库连接池-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driver}" />
@@ -54,16 +54,16 @@
     
     <!-- 3.配置sqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"/>
+		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
 		<property name="dataSource" ref="dataSource"/>
 		<!-- 扫描entity包 使用别名 -->
-        <property name="typeAliasesPackage" value="cn.IBeauty.po"/>
-	    <property name="mapperLocations" value="classpath:/mapper/*Mapper.xml"/> 
+        <!-- <property name="typeAliasesPackage" value="cn.IBeauty.po"/> -->
+	    <property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/> 
 	</bean>
     
 	<!-- 4.配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中  -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="cn.IBeauty.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+		<property name="basePackage" value="cn.IBeauty.dao" />
 	</bean>
 </beans>

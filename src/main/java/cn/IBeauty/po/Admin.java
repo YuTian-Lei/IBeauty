@@ -1,8 +1,5 @@
 package cn.IBeauty.po;
-import java.util.Date;
-import java.io.Serializable;
 public class Admin {
-	
 	
 	private int id;
     private String admname;
