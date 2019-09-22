@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import cn.IBeauty.dao.ProductDAO;
 import cn.IBeauty.po.Product;
 import cn.IBeauty.service.ProductService;
+import cn.IBeauty.util.PageCalculate;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -130,4 +131,13 @@ public class ProductServiceImpl implements ProductService {
 		return product;
 	}
 
+	
+	@Override
+	//分页查询
+	@Cacheable(value = "mycache", key = "'page_'+#Index+'_'+#pageSize")
+	public List<Product> findProduct(Integer Index, Integer pageSize) {
+		Integer rowIndex = PageCalculate.getRowIndex(Index, pageSize);
+		List<Product> productList = productdao.findPage(rowIndex, pageSize);
+		return productList; 
+	}
 }

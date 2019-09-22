@@ -50,7 +50,7 @@ public class SpringTestCase extends
 
 	@Test
 	public void testService() {
-		List<Product> list = productService.findAllProduct();
+		List<Product> list = productService.findProduct(2, 3);
 		for (Product product : list) {
 			System.out.println(product.getProduct_name());
 		}

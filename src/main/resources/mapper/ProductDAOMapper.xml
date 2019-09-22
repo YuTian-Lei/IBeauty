@@ -5,6 +5,12 @@
 	<select id="findAll" resultType="cn.IBeauty.po.Product">
 		select * from product
 	</select>
+	
+	<select id="findPage" resultType="cn.IBeauty.po.Product">
+		select * from product
+		order by id
+		limit #{rowIndex},#{pageSize}
+	</select>
 
 	<select id="findProductByfirstId" resultType="cn.IBeauty.po.Product">
 		SELECT product.*

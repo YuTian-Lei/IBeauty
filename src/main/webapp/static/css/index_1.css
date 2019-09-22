@@ -390,3 +390,13 @@ body{
 .navDelay .liAll {
 	background: #ea1c50
 }
+
+#pagination {
+    float: left;
+}
+
+.oper_box {
+    float: left;
+    margin: 28px 0 0 20px;
+}
+

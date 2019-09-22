@@ -1,12 +1,18 @@
 package cn.IBeauty.service;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import cn.IBeauty.po.Product;
 
 public interface ProductService {
-
+	//查詢所有商品
 	public List<Product> findAllProduct();
 
+	//分页查询
+	public List<Product> findProduct(@Param("index")Integer index,@Param("pageSize")Integer pageSize);
+	
 	// 查询一级分类
 	public List<Product> findFirstProduct(int id);
 

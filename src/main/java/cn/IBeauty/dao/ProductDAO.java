@@ -10,7 +10,10 @@ import cn.IBeauty.po.Product;
 public interface ProductDAO {
     //雷鹏飞部分
 	//查询所有商品
-	public List<Product>  findAll();	
+	public List<Product>  findAll();
+	
+	public List<Product>  findPage(@Param("rowIndex")Integer rowIndex,@Param("pageSize")Integer pageSize);
+	
 	//根据一级分类id查询商品
 	public List<Product>  findProductByfirstId(int id);	
 	//根据二级分类id查询商品

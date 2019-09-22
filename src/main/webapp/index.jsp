@@ -16,18 +16,6 @@
 <link rel="stylesheet" href="./static/css/index_2.css" />
 <!--index样式-->
 <link rel="stylesheet" href="./static/css/index.css" />
-<!--下拉面板-->
-<script type="text/javascript" src="./static/js/jquery-3.0.0.min.js"></script>
-<script type="text/javascript"
-	src="./static/js/jquery.bigautocomplete.js?t=1496299121701"></script>
-<script type="text/javascript" src="./static/js/commonFooter.js"></script>
-<!--轮播-->
-<script type="text/javascript" src="./static/js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript"
-	src="./static/js/jquery.bigautocomplete.js?t=1496299121701"></script>
-<script type="text/javascript"
-	src="./static/js/jquery.superslide.min.js?t=1496299121701"></script>
-<script type="text/javascript" src="./static/js/home.js"></script>
 
 <script type="text/javascript">
 		$(function() {
@@ -1148,6 +1136,9 @@
 			</ul>
 		</div>
 
+    <ul class="pagination" id="pagination"></ul>
+    <div class="oper_box">共<span class="product_length_number"></span>条记录</div>
+   
 		<div class="nodata btn_NextPage" style="display: block;">
 			<a href="javascript:void(0)" onclick="insertDiv();"><img
 				src="./static/img/tishi.png"></a>
@@ -1183,8 +1174,7 @@
 			var a = test + 1;
 			var b = test + 6;
 			//alert(a);
-			$
-					.ajax({
+			$.ajax({
 						url : 'setParam.do?a=' + a + '&b=' + b,
 						async : true,
 						type : 'post',
@@ -1217,5 +1207,20 @@
 			});
 		});
 	</script>
+	
+	<!--下拉面板-->
+<script type="text/javascript" src="./static/js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript"
+	src="./static/js/jquery.bigautocomplete.js?t=1496299121701"></script>
+<script type="text/javascript" src="./static/js/commonFooter.js"></script>
+<!--轮播-->
+<script type="text/javascript" src="./static/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript"
+	src="./static/js/jquery.bigautocomplete.js?t=1496299121701"></script>
+<script type="text/javascript"
+	src="./static/js/jquery.superslide.min.js?t=1496299121701"></script>
+<script type="text/javascript" src="./static/js/home.js"></script>
+<script type="text/javascript" src="./static/js/index.js"></script>
+<script type="text/javascript" src="./static/js/jqPaginator.js"></script>
 </body>
 </html>

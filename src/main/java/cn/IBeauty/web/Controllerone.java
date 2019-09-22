@@ -2,7 +2,6 @@
 
 import cn.IBeauty.dao.AddressDAO;
 import cn.IBeauty.dao.ProductDAO;
-import cn.IBeauty.dao.UserDAO;
 import cn.IBeauty.dao.cartDAO;
 import cn.IBeauty.dao.orderDAO;
 import cn.IBeauty.po.Admin;
@@ -26,10 +25,8 @@ import cn.IBeauty.service.PayService;
 import cn.IBeauty.service.ProductService;
 import cn.IBeauty.service.UserService;
 import cn.IBeauty.service.cartService;
-import cn.IBeauty.service.cartrefreshService;
 import cn.IBeauty.service.collectService;
 import cn.IBeauty.service.orderService;
-import cn.IBeauty.service.impl.ProductServiceImpl;
 import cn.IBeauty.util.EncrypUtil;
 import cn.IBeauty.util.MailUtil;
 import cn.IBeauty.util.PaymentUtil;
@@ -38,13 +35,11 @@ import cn.IBeauty.util.RSA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import sun.applet.Main;
 
 import java.io.UnsupportedEncodingException;
 import java.security.interfaces.RSAPrivateKey;
@@ -300,13 +295,15 @@ public class Controllerone {
 
 	// 添加商品list
 	@RequestMapping("toIndex")
-	public String SetProductList(HttpSession session) {
-		List<Product> list = productservice.findAllProduct();
-		session.setAttribute("ProductList", list);
-		/*
-		 * for(Product lt:list){ }
-		 */
-		return "redirect:./index.jsp";
+	@ResponseBody
+	public Map<String, Object> SetProductList(@RequestParam(value = "page", defaultValue = "0") int page,
+											  @RequestParam(value = "pageSize", defaultValue = "0") int pageSize) {
+	    Map<String, Object> modelMap = new HashMap<String, Object>();
+		List<Product> list = productservice.findProduct(page, pageSize);
+		modelMap.put("success", true);
+		modelMap.put("productlist", list);
+		modelMap.put("count", productservice.findAllProduct().size());
+		return modelMap;
 	}
 
 	// 跳转二级页面
