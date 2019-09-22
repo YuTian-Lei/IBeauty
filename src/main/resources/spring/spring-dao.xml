@@ -8,8 +8,15 @@
     http://www.springframework.org/schema/context/spring-context.xsd">
 		
 	<!-- 1.配置数据库相关参数properties的属性-->
-    <context:property-placeholder location="classpath:jdbc.properties" ignore-unresolvable="true"/>
-    <!-- <context:property-placeholder location="classpath:redis.properties" ignore-unresolvable="true"/>-->
+     <bean
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+                <value>classpath:redis.properties</value>
+            </list>
+        </property>
+    </bean>
  
     <!-- 2.配置datasource,阿里 druid 数据库连接池-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">

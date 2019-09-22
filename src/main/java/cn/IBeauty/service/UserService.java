@@ -3,6 +3,7 @@ package cn.IBeauty.service;
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import cn.IBeauty.dao.UserDAO;
@@ -14,6 +15,7 @@ public class UserService {
 	UserDAO userdao;
 
 	// 雷鹏飞
+	@Cacheable(value = "myCache", key="'user_'+#email")
 	public User checkLogin(String email) {
 		// 根据用户名实例化用户对象
 		User user = userdao.findUserByEmail(email);

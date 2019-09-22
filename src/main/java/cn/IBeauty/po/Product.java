@@ -1,11 +1,14 @@
 package cn.IBeauty.po;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 public class Product implements Serializable{
-     private  int id;
+     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7899770096490109701L;
+	private  int id;
      private  String product_brand;
      private  String product_name;
      private  String detail;
