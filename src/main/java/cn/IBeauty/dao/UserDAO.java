@@ -4,8 +4,6 @@ import cn.IBeauty.po.User;
 import org.apache.ibatis.annotations.Param;
 import org.junit.runners.Parameterized.Parameters;
 import java.util.List;
-
-
 /**
 * User数据访问接口
 */

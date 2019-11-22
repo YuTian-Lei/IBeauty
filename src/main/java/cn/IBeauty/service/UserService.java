@@ -14,6 +14,7 @@ public class UserService {
 	@Autowired
 	UserDAO userdao;
 
+
 	// 雷鹏飞
 	@Cacheable(value = "myCache", key="'user_'+#email")
 	public User checkLogin(String email) {

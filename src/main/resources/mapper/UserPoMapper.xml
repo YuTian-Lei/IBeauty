@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.IBeauty.dao.UserPoMapper">
+  <resultMap id="BaseResultMap" type="cn.IBeauty.po.UserPo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="nickname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pwd" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_integral" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="is_email_verify" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="email_verify_code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="last_login_time" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="last_login_ip" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_pic" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, email, nickname, pwd, user_integral, is_email_verify, email_verify_code, last_login_time, 
+    last_login_ip, user_pic
+  </sql>
+</mapper>

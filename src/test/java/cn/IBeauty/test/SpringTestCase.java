@@ -13,16 +13,24 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.github.pagehelper.PageInfo;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
+import tk.mybatis.mapper.entity.Example;
 /**
  * Created by haoz1w0w@126.com on 2017-06-02 23:36:18.
  *spring 测试基类
  */
 import cn.IBeauty.dao.ProductDAO;
+import cn.IBeauty.dao.UserEntityMapper;
+import cn.IBeauty.dao.UserPoMapper;
 import cn.IBeauty.po.Product;
+import cn.IBeauty.po.UserEntity;
+import cn.IBeauty.po.UserPo;
 import cn.IBeauty.service.ProductService;
+import cn.IBeauty.service.UserEntityService;
 import cn.IBeauty.service.impl.ProductServiceImpl;
 
 
@@ -37,21 +45,24 @@ public class SpringTestCase extends
 	public ProductService productService;
 	@Autowired
 	RedisTemplate redisTemplate;
-	
-
+	@Autowired
+	public UserPoMapper  userPoMapper;
+	@Autowired
+	public UserEntityMapper  userEntityMapper;
+	@Autowired
+	public UserEntityService userEntityService;
 	@Test
-	@Ignore
-	public void testDao() {	
-		List<Product> list = productDao.findAll();	
-		for (Product product : list) {
-			System.out.println(product.getProduct_name());
-		}
+	public void testDao() {			
+		List<UserEntity> userList = userEntityService.selectListByName("雨田月月鸟飞");
+		UserEntity user = userList.get(0);
+		System.out.println(user.getNickname());
 	}
 
 	@Test
+	@Ignore
 	public void testService() {
-		List<Product> list = productService.findProduct(2, 3);
-		for (Product product : list) {
+		PageInfo<Product> list = productService.findProduct(2, 7);
+		for (Product product : list.getList()) {
 			System.out.println(product.getProduct_name());
 		}
 	}

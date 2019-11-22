@@ -5,11 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 import cn.IBeauty.dao.ProductDAO;
 import cn.IBeauty.po.Product;
 import cn.IBeauty.service.ProductService;
-import cn.IBeauty.util.PageCalculate;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -19,7 +22,6 @@ public class ProductServiceImpl implements ProductService {
 
 	// 雷鹏飞
 	// 查询所有商品
-
 	@Cacheable(value = "mycache", key = "'productlist'")
 	public List<Product> findAllProduct() {
 		List<Product> list = productdao.findAll();
@@ -27,7 +29,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	// 查询一级分类
-	public List<Product> findFirstProduct(int id) {
+	 public List<Product> findFirstProduct(int id) {
 		List<Product> list = productdao.findProductByfirstId(id);
 		if (list == null) {
 			System.out.println("空");
@@ -52,7 +54,8 @@ public class ProductServiceImpl implements ProductService {
 		List<Product> list = productdao.GroupBybrand(id);
 		return list;
 	}
-
+	
+	
 	public List<Product> GroupByBrand_Search(String keyword) {
 		List<Product> list = productdao.GroupBybrand_Search(keyword);
 		return list;
@@ -135,9 +138,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	//分页查询
 	@Cacheable(value = "mycache", key = "'page_'+#Index+'_'+#pageSize")
-	public List<Product> findProduct(Integer Index, Integer pageSize) {
-		Integer rowIndex = PageCalculate.getRowIndex(Index, pageSize);
-		List<Product> productList = productdao.findPage(rowIndex, pageSize);
-		return productList; 
+	public PageInfo<Product> findProduct(Integer Index, Integer pageSize) {
+		PageHelper.startPage(Index, pageSize);
+		//Integer rowIndex = PageCalculate.getRowIndex(Index, pageSize);
+		List<Product> productList = productdao.findAll();
+		PageInfo<Product> pageInfo = new PageInfo<>(productList);
+		return pageInfo; 
 	}
 }

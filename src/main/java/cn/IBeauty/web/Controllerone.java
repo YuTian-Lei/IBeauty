@@ -41,6 +41,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.pagehelper.PageInfo;
+
 import java.io.UnsupportedEncodingException;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
@@ -299,10 +301,10 @@ public class Controllerone {
 	public Map<String, Object> SetProductList(@RequestParam(value = "page", defaultValue = "0") int page,
 											  @RequestParam(value = "pageSize", defaultValue = "0") int pageSize) {
 	    Map<String, Object> modelMap = new HashMap<String, Object>();
-		List<Product> list = productservice.findProduct(page, pageSize);
+	    PageInfo<Product> list = productservice.findProduct(page, pageSize);
 		modelMap.put("success", true);
-		modelMap.put("productlist", list);
-		modelMap.put("count", productservice.findAllProduct().size());
+		modelMap.put("productlist", list.getList());
+		//modelMap.put("count", productservice.findAllProduct().size());
 		return modelMap;
 	}
 

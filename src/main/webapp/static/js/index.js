@@ -55,7 +55,7 @@ function load_redis_list() {
     				+ item.price + "</strong></div></div>" + "</a>"
     				+ "</li>";
     			});
-    			alert(html);
+    			//alert(html);
     			$(".commodity").html(html);
                            
                 //这里是分页的插件
